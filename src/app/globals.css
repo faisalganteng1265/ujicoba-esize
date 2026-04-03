@@ -23,3 +23,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes spin-in {
+  0% { transform: rotate(0deg); opacity: 0; }
+  100% { transform: rotate(360deg); opacity: 1; }
+}
+
+.animate-spin-in {
+  animation: spin-in 0.8s ease-out forwards;
+}

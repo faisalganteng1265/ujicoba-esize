@@ -1,4 +1,8 @@
 import Image from "next/image";
+import FadeInLeft from "./components/FadeInLeft";
+import FadeInRight from "./components/FadeInRight";
+import SpinIn from "./components/SpinIn";
+import FadeInUp from "./components/FadeInUp";
 
 export default function Home() {
   return (
@@ -38,7 +42,7 @@ export default function Home() {
       <section className="bg-[#f5f5f3] py-20">
         <div className="w-full flex flex-col md:flex-row items-center gap-16 px-16 2xl:px-80">
           {/* Left */}
-          <div className="flex-1">
+          <FadeInLeft className="flex-1">
             <h2 className="text-5xl font-bold mb-3">
               <span className="text-[#9F7A04]">About</span>{" "}
               <span className="text-[#7C6000]">Esize</span>
@@ -57,30 +61,38 @@ export default function Home() {
             <button className="px-6 py-2 rounded-full bg-[#DFAA14] text-white font-light hover:bg-[#7a6210] transition-colors">
               Selengkapnya →
             </button>
-          </div>
+          </FadeInLeft>
 
           {/* Right - 2x2 Image Grid */}
           <div className="grid grid-cols-2 gap-2 w-[420px]">
-            <div className="rounded-tl-2xl rounded-br-2xl bg-[#4a7fc1] aspect-square relative p-3">
-              <div className="relative w-full h-full rounded-tl-xl rounded-br-xl overflow-hidden">
-                <Image src="/ataskanan.png" alt="Produk 1" fill className="object-cover" />
+            <FadeInLeft>
+              <div className="rounded-tl-2xl rounded-br-2xl bg-[#4a7fc1] aspect-square relative p-3">
+                <div className="relative w-full h-full rounded-tl-xl rounded-br-xl overflow-hidden">
+                  <Image src="/ataskanan.png" alt="Produk 1" fill className="object-cover" />
+                </div>
               </div>
-            </div>
-            <div className="rounded-tr-2xl rounded-bl-2xl bg-[#c0553a] aspect-square relative p-3">
-              <div className="relative w-full h-full rounded-tr-xl rounded-bl-xl overflow-hidden">
-                <Image src="/ataskiri.png" alt="Produk 2" fill className="object-cover" />
+            </FadeInLeft>
+            <FadeInRight>
+              <div className="rounded-tr-2xl rounded-bl-2xl bg-[#c0553a] aspect-square relative p-3">
+                <div className="relative w-full h-full rounded-tr-xl rounded-bl-xl overflow-hidden">
+                  <Image src="/ataskiri.png" alt="Produk 2" fill className="object-cover" />
+                </div>
               </div>
-            </div>
-            <div className="rounded-tr-2xl rounded-bl-2xl bg-[#7C6000] aspect-square relative p-3">
-              <div className="relative w-full h-full rounded-tr-xl rounded-bl-xl overflow-hidden">
-                <Image src="/bawahkiri.png" alt="Produk 3" fill className="object-cover" />
+            </FadeInRight>
+            <FadeInLeft>
+              <div className="rounded-tr-2xl rounded-bl-2xl bg-[#7C6000] aspect-square relative p-3">
+                <div className="relative w-full h-full rounded-tr-xl rounded-bl-xl overflow-hidden">
+                  <Image src="/bawahkiri.png" alt="Produk 3" fill className="object-cover" />
+                </div>
               </div>
-            </div>
-            <div className="rounded-tl-2xl rounded-br-2xl bg-[#4a7fc1] aspect-square relative p-3">
-              <div className="relative w-full h-full rounded-tl-xl rounded-br-xl overflow-hidden">
-                <Image src="/bawahkanan.png" alt="Produk 4" fill className="object-cover" />
+            </FadeInLeft>
+            <FadeInRight>
+              <div className="rounded-tl-2xl rounded-br-2xl bg-[#4a7fc1] aspect-square relative p-3">
+                <div className="relative w-full h-full rounded-tl-xl rounded-br-xl overflow-hidden">
+                  <Image src="/bawahkanan.png" alt="Produk 4" fill className="object-cover" />
+                </div>
               </div>
-            </div>
+            </FadeInRight>
           </div>
         </div>
       </section>
@@ -90,8 +102,12 @@ export default function Home() {
         {/* Logo Top */}
         <div className="flex justify-center mb-4">
           <div className="flex items-center gap-1">
-            <Image src="/Rectangle 17.png" alt="logo" width={80} height={80} className="rotate-180" />
-            <Image src="/Rectangle 19.png" alt="logo" width={80} height={80} className="rotate-180" />
+            <SpinIn>
+              <Image src="/Rectangle 17.png" alt="logo" width={80} height={80} className="rotate-180" />
+            </SpinIn>
+            <SpinIn>
+              <Image src="/Rectangle 19.png" alt="logo" width={80} height={80} className="rotate-180" />
+            </SpinIn>
           </div>
         </div>
 
@@ -105,21 +121,25 @@ export default function Home() {
             { value: "20.000+", label: "Customer" },
             { value: "20.000+", label: "Customer" },
           ].map((stat, i) => (
-            <div key={i} className="relative px-10 py-6">
-              {/* Top-right corner */}
-              <span className="absolute top-0 right-0 w-12 h-12 border-t-6 border-r-6 border-[#fae8e4]" />
-              {/* Bottom-left corner */}
-              <span className="absolute bottom-0 left-0 w-12 h-12 border-b-6 border-l-6 border-[#fae8e4]" />
-              <p className="text-3xl font-bold text-[#927615]">{stat.value}</p>
-              <p className="text-gray-600 text-center font-light">{stat.label}</p>
-            </div>
+            <FadeInUp key={i}>
+              <div className="relative px-10 py-6">
+                {/* Top-right corner */}
+                <span className="absolute top-0 right-0 w-12 h-12 border-t-6 border-r-6 border-[#fae8e4]" />
+                {/* Bottom-left corner */}
+                <span className="absolute bottom-0 left-0 w-12 h-12 border-b-6 border-l-6 border-[#fae8e4]" />
+                <p className="text-3xl font-bold text-[#927615]">{stat.value}</p>
+                <p className="text-gray-600 text-center font-light">{stat.label}</p>
+              </div>
+            </FadeInUp>
           ))}
         </div>
 
         {/* Banner */}
-        <div className="bg-[#d4795e] py-3 text-center mb-12 mx-48">
-          <p className="text-white text-3xl font-bold">Pengiriman Dalam Negeri dan Luar Negeri</p>
-        </div>
+        <FadeInUp>
+          <div className="bg-[#d4795e] py-3 text-center mb-12 mx-48">
+            <p className="text-white text-3xl font-bold">Pengiriman Dalam Negeri dan Luar Negeri</p>
+          </div>
+        </FadeInUp>
 
         {/* Divider */}
         <hr className="border-t-2 border-[#c0553a] mb-4 mx-32" />
@@ -127,40 +147,52 @@ export default function Home() {
         {/* Logo Bottom */}
         <div className="flex justify-center">
           <div className="flex items-center gap-1">
-            <Image src="/Rectangle 19.png" alt="logo" width={80} height={80} />
-            <Image src="/Rectangle 17.png" alt="logo" width={80} height={80} />
+            <SpinIn>
+              <Image src="/Rectangle 19.png" alt="logo" width={80} height={80} />
+            </SpinIn>
+            <SpinIn>
+              <Image src="/Rectangle 17.png" alt="logo" width={80} height={80} />
+            </SpinIn>
           </div>
         </div>
       </section>
       {/* Kategori Produk Section */}
       <section className="bg-[#f5f5f3] py-16 px-16 2xl:px-80">
-        <h2 className="text-3xl font-bold text-[#7C6000] mb-2">Kategori Produk</h2>
-        <p className="text-gray-500 font-light mb-10">Berbagai pilihan merchandise berkualitas untuk kebutuhan Anda</p>
+        <FadeInUp>
+          <h2 className="text-3xl font-bold text-[#7C6000] mb-2">Kategori Produk</h2>
+          <p className="text-gray-500 font-light mb-10">Berbagai pilihan merchandise berkualitas untuk kebutuhan Anda</p>
+        </FadeInUp>
 
         <div className="grid grid-cols-4 gap-9 mb-10">
           {["T-Shirt", "Jacket", "Hoodie & Sweater", "Polo & Shirt"].map((name) => (
-            <div key={name} className="bg-white rounded-2xl shadow-md p-6">
-              <div className="bg-[#c8a96e] rounded-xl flex items-center justify-center aspect-square mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4a7fc1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                  <line x1="12" y1="22.08" x2="12" y2="12" />
-                </svg>
+            <FadeInUp key={name}>
+              <div className="bg-white rounded-2xl shadow-md p-6">
+                <div className="bg-[#c8a96e] rounded-xl flex items-center justify-center aspect-square mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4a7fc1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                    <line x1="12" y1="22.08" x2="12" y2="12" />
+                  </svg>
+                </div>
+                <p className="text-center text-gray-800 font-light">{name}</p>
               </div>
-              <p className="text-center text-gray-800 font-light">{name}</p>
-            </div>
+            </FadeInUp>
           ))}
         </div>
 
-        <button className="px-8 py-2 rounded-full bg-[#DFAA14] text-white font-light hover:bg-[#c49510] transition-colors mx-6 shadow-lg">
-          Lihat Semua Produk
-        </button>
+        <FadeInUp>
+          <button className="px-8 py-2 rounded-full bg-[#DFAA14] text-white font-light hover:bg-[#c49510] transition-colors mx-6 shadow-lg">
+            Lihat Semua Produk
+          </button>
+        </FadeInUp>
       </section>
 
       {/* How To Order Section */}
       <section className="bg-[#f5f5f3] py-16 px-16 2xl:px-80">
-        <h2 className="text-5xl font-semibold text-[#7C6000] mb-2">How To Order?</h2>
-        <p className="text-black italic font-light mb-12">Size the sequence, to your perfect size.</p>
+        <FadeInUp>
+          <h2 className="text-5xl font-semibold text-[#7C6000] mb-2 mx-6">How To Order?</h2>
+          <p className="text-black italic font-light mb-12 mx-6">Size the sequence, to your perfect size.</p>
+        </FadeInUp>
 
         <div className="flex items-stretch mb-12">
           {[
@@ -170,7 +202,7 @@ export default function Home() {
             { num: "04", title: "Konsultasi Produk & Harga", desc: "Proses produksi akan dimulai setelah pembayaran berhasil" },
             { num: "05", title: "Pengiriman dan Pelunasan", desc: "Admin Esize akan mengirimkan anda ke alamat pengiriman" },
           ].map((step, i) => (
-            <div key={step.num} className="flex items-start flex-1">
+            <FadeInUp key={step.num} className="flex items-start flex-1">
               <div className="flex-1 h-full bg-[#F8F3E9] rounded-2xl shadow-md overflow-hidden flex flex-col relative">
                 <div className="flex-1 flex flex-col">
                   <div className="relative bg-[#e8e8e8] rounded-xl mx-4 mt-4 mb-4">
@@ -195,15 +227,15 @@ export default function Home() {
                 {i < 4 && <div className="absolute top-[76px] right-0 w-4 border-t border-gray-300" />}
               </div>
               {i < 4 && <div className="w-6 flex-shrink-0 border-t border-gray-300 mt-[76px]" />}
-            </div>
+            </FadeInUp>
           ))}
         </div>
 
-        <div className="flex justify-center">
+        <FadeInUp className="flex justify-center">
           <button className="px-4 py-3 rounded-full bg-[#DFAA14] text-white font-light hover:bg-[#c49510] transition-colors shadow-lg">
             Pesan Sekarang
           </button>
-        </div>
+        </FadeInUp>
       </section>
     </main>
   );
