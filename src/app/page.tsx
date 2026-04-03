@@ -36,7 +36,7 @@ export default function Home() {
 
       {/* About Section */}
       <section className="bg-[#f5f5f3] py-20">
-        <div className="w-full flex flex-col md:flex-row items-center gap-16 px-80">
+        <div className="w-full flex flex-col md:flex-row items-center gap-16 px-16 2xl:px-80">
           {/* Left */}
           <div className="flex-1">
             <h2 className="text-5xl font-bold mb-3">
@@ -86,7 +86,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-[#f5f5f3] py-8 px-80">
+      <section className="bg-[#f5f5f3] py-8 px-16 2xl:px-80">
         {/* Logo Top */}
         <div className="flex justify-center mb-4">
           <div className="flex items-center gap-1">
@@ -133,7 +133,7 @@ export default function Home() {
         </div>
       </section>
       {/* Kategori Produk Section */}
-      <section className="bg-[#f5f5f3] py-16 px-80">
+      <section className="bg-[#f5f5f3] py-16 px-16 2xl:px-80">
         <h2 className="text-3xl font-bold text-[#7C6000] mb-2">Kategori Produk</h2>
         <p className="text-gray-500 font-light mb-10">Berbagai pilihan merchandise berkualitas untuk kebutuhan Anda</p>
 
@@ -158,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* How To Order Section */}
-      <section className="bg-[#f5f5f3] py-16 px-80">
+      <section className="bg-[#f5f5f3] py-16 px-16 2xl:px-80">
         <h2 className="text-5xl font-semibold text-[#7C6000] mb-2">How To Order?</h2>
         <p className="text-black italic font-light mb-12">Size the sequence, to your perfect size.</p>
 
