@@ -122,9 +122,9 @@ export default function Chatbot() {
                     {msg.content}
                   </div>
                 ) : (
-                  <p className="max-w-[90%] text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">
+                  <div className="max-w-[80%] bg-gray-100 text-gray-800 text-sm rounded-2xl rounded-bl-sm px-4 py-2.5 leading-relaxed whitespace-pre-wrap">
                     {msg.content}
-                  </p>
+                  </div>
                 )}
               </div>
             ))}

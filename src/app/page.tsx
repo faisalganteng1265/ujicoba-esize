@@ -3,6 +3,7 @@ import FadeInLeft from "./components/FadeInLeft";
 import FadeInRight from "./components/FadeInRight";
 import SpinIn from "./components/SpinIn";
 import FadeInUp from "./components/FadeInUp";
+import CategoryCarousel from "./components/CategoryCarousel";
 
 export default function Home() {
   return (
@@ -163,21 +164,8 @@ export default function Home() {
           <p className="text-gray-500 font-light mb-10">Berbagai pilihan merchandise berkualitas untuk kebutuhan Anda</p>
         </FadeInUp>
 
-        <div className="grid grid-cols-4 gap-9 mb-10">
-          {["T-Shirt", "Jacket", "Hoodie & Sweater", "Polo & Shirt"].map((name) => (
-            <FadeInUp key={name}>
-              <div className="bg-white rounded-2xl shadow-md p-6">
-                <div className="bg-[#c8a96e] rounded-xl flex items-center justify-center aspect-square mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4a7fc1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                    <line x1="12" y1="22.08" x2="12" y2="12" />
-                  </svg>
-                </div>
-                <p className="text-center text-gray-800 font-light">{name}</p>
-              </div>
-            </FadeInUp>
-          ))}
+        <div className="mb-10">
+          <CategoryCarousel />
         </div>
 
         <FadeInUp>

@@ -1,68 +1,29 @@
-import Link from "next/link";
-import FadeInLeft from "../components/FadeInLeft";
+import Image from "next/image";
 import FadeInUp from "../components/FadeInUp";
+import { pakaian, merch } from "../data/categories";
 
-const pakaian = [
-  { name: "T-Shirt", bg: "#b8d8b0" },
-  { name: "Jersey", bg: "#b4cfe8" },
-  { name: "Jacket", bg: "#e8b4a0" },
-  { name: "Hoodie", bg: "#d4c490" },
-  { name: "Sweater", bg: "#e8b8b8" },
-  { name: "Kemeja / PDH", bg: "#d4c490" },
-];
 
-const merch = [
-  { name: "Cap / Bucket", bg: "#e8b8b8" },
-  { name: "Tote Bag", bg: "#b4cfe8" },
-  { name: "ID Card & Lanyard", bg: "#d4c490" },
-  { name: "Payung", bg: "#e8b8b8" },
-  { name: "Tumbler", bg: "#b8d8b0" },
-  { name: "Mug", bg: "#d4c490" },
-  { name: "Ballpoint", bg: "#e8b4a0" },
-  { name: "Sticker", bg: "#c8dff0" },
-  { name: "Key Chain", bg: "#e8b8b8" },
-  { name: "Pin", bg: "#b4cfe8" },
-  { name: "Notebook", bg: "#d4c490" },
-  { name: "HandFan", bg: "#b8d8b0" },
-];
-
-function CategoryIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="64"
-      height="64"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#4a7fc1"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-      <line x1="12" y1="22.08" x2="12" y2="12" />
-    </svg>
-  );
-}
+const labelColors = ["#4a7fc1", "#d4795e", "#4a7fc1", "#d4795e"];
 
 function CategoryGrid({ items }: { items: { name: string; bg: string }[] }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {items.map((cat) => (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-16">
+      {items.map((cat, i) => (
         <FadeInUp key={cat.name}>
-          <div className="bg-white rounded-xl shadow-md overflow-hidden">
-            <div
-              className="aspect-[4/3] flex items-center justify-center"
-              style={{ backgroundColor: cat.bg }}
-            >
-              <CategoryIcon />
-            </div>
-            <div className="px-4 py-4 border-t border-gray-100">
-              <p className="font-normal text-gray-900 mb-1">{cat.name}</p>
-              <Link href="#" className="text-[#4a7fc1] text-sm hover:underline">
-                Lihat Produk →
-              </Link>
+          {/* pt-4 pr-4 = space for back layers to peek top & right */}
+          <div className="relative pt-10 pr-4">
+            {/* Salmon layer - furthest back, more tilted */}
+            <div className="absolute top-0 right-0 bottom-10 left-4 rounded-xl bg-[#e8b4a8] rotate-6 origin-bottom-left" />
+            {/* Blue layer - middle, slightly tilted */}
+            <div className="absolute top-4 right-2 bottom-6 left-2 rounded-xl bg-[#b4cfe8] rotate-3 origin-bottom-left" />
+            {/* Main card */}
+            <div className="relative border-2 border-[#927615] rounded-xl overflow-hidden bg-white">
+              <div className="aspect-square relative overflow-hidden">
+                <Image src="/baju.png" alt={cat.name} fill className="object-cover" />
+              </div>
+              <div className="py-3 text-center" style={{ backgroundColor: labelColors[i % 4] }}>
+                <p className="text-white font-bold text-sm">{cat.name}</p>
+              </div>
             </div>
           </div>
         </FadeInUp>
@@ -75,32 +36,75 @@ export default function CategoryPage() {
   return (
     <main className="min-h-screen bg-white">
 
-      {/* Title */}
-      <div className="px-16 2xl:px-80 pt-16 pb-8">
-        <h1 className="text-4xl font-bold text-center text-[#7C6000] tracking-normal uppercase">
-          Kategori Produk
-        </h1>
+      {/* Hero Header */}
+      <div className="relative flex flex-col items-center justify-center text-center pt-20 pb-16 px-8"
+        style={{ background: "radial-gradient(ellipse at 50% 40%, #f5d0c0 0%, #fceee8 35%, #ffffff 70%)" }}>
+        {/* Title blocks */}
+        <div className="flex flex-col items-center gap-2 mb-6">
+          <span className="bg-[#7C6000] text-white font-bold text-4xl md:text-5xl px-8 py-2">
+            Katalog Produk
+          </span>
+          <span className="bg-[#7C6000] text-white font-bold text-4xl md:text-5xl px-8 py-2 w-full text-center">
+            Apparel &amp; Merchandise
+          </span>
+        </div>
+
+        {/* Subtitle */}
+        <p className="text-[#7C6000] text-l max-w-2xl mb-10 leading-snug">
+          Temukan berbagai pilihan pakaian dan merchandise custom untuk<br />
+          kebutuhan event, organisasi, corporate, dan brand kamu
+        </p>
+
+        {/* Search bar */}
+        <div className="flex items-center gap-2 border-2 border-[#7C6000] rounded-full px-5 py-3 w-full max-w-lg bg-white/80 mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Cari produk..."
+            className="flex-1 bg-transparent outline-none text-sm text-gray-700 placeholder-gray-400"
+          />
+        </div>
+
+        {/* Chevron */}
+        <Image src="/Line 14.png" alt="scroll down" width={96} height={64} />
       </div>
 
-      {/* Pakaian Banner - full width */}
-      <FadeInLeft>
-        <div className="bg-[#d4795e] py-3 text-center mb-12">
-          <p className="text-white text-4xl font-bold tracking-widest uppercase">Pakaian</p>
-        </div>
-      </FadeInLeft>
-
-      <div className="px-16 2xl:px-80 pb-16">
+      {/* Pakaian Section */}
+      <div className="px-16 2xl:px-80 pt-16 pb-4">
+        <FadeInUp>
+          <div className="flex flex-col items-center mb-12">
+            <div className="flex items-center gap-1 mb-4">
+              <Image src="/Rectangle 17.png" alt="logo" width={100} height={100} />
+              <Image src="/Rectangle 19.png" alt="logo" width={100} height={100} />
+            </div>
+            <div className="relative px-16 py-5">
+              <span className="absolute top-0 right-0 w-20 h-12 border-t-6 border-r-6 border-[#fae8e4]" />
+              <span className="absolute bottom-0 left-0 w-20 h-12 border-b-6 border-l-6 border-[#fae8e4]" />
+              <p className="text-[#4a7fc1] text-3xl font-bold">Pakaian</p>
+            </div>
+          </div>
+        </FadeInUp>
         <CategoryGrid items={pakaian} />
       </div>
 
-      {/* Merch Banner - full width */}
-      <FadeInLeft>
-        <div className="bg-[#4a7fc1] py-3 text-center mb-12">
-          <p className="text-white text-4xl font-bold tracking-widest uppercase">Merch</p>
-        </div>
-      </FadeInLeft>
-
-      <div className="px-16 2xl:px-80 pb-16">
+      {/* Merch Section */}
+      <div className="px-16 2xl:px-80 pt-16 pb-16">
+        <FadeInUp>
+          <div className="flex flex-col items-center mb-12">
+            <div className="flex items-center gap-1 mb-4">
+              <Image src="/Rectangle 17.png" alt="logo" width={100} height={100} />
+              <Image src="/Rectangle 19.png" alt="logo" width={100} height={100} />
+            </div>
+            <div className="relative px-16 py-5">
+              <span className="absolute top-0 right-0 w-20 h-12 border-t-6 border-r-6 border-[#fae8e4]" />
+              <span className="absolute bottom-0 left-0 w-20 h-12 border-b-6 border-l-6 border-[#fae8e4]" />
+              <p className="text-[#4a7fc1] text-3xl font-bold">Merch</p>
+            </div>
+          </div>
+        </FadeInUp>
         <CategoryGrid items={merch} />
       </div>
 
