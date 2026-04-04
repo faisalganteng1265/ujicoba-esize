@@ -17,12 +17,12 @@ function CategoryGrid({ items }: { items: { name: string; bg: string }[] }) {
             {/* Blue layer - middle, slightly tilted */}
             <div className="absolute top-4 right-2 bottom-6 left-2 rounded-xl bg-[#b4cfe8] rotate-3 origin-bottom-left" />
             {/* Main card */}
-            <div className="relative border-2 border-[#927615] rounded-xl overflow-hidden bg-white">
+            <div className="relative border-4 border-[#927615] rounded-t-xl overflow-hidden bg-white">
               <div className="aspect-square relative overflow-hidden">
                 <Image src="/baju.png" alt={cat.name} fill className="object-cover" />
               </div>
               <div className="py-3 text-center" style={{ backgroundColor: labelColors[i % 4] }}>
-                <p className="text-white font-bold text-sm">{cat.name}</p>
+                <p className="text-white font-bold text-lg">{cat.name}</p>
               </div>
             </div>
           </div>
