@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 type Message = {
   role: "user" | "assistant";
@@ -8,7 +9,10 @@ type Message = {
 };
 
 export default function Chatbot() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  if (pathname.startsWith("/editor")) return null;
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
