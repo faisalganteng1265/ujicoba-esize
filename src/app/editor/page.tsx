@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import JSZip from "jszip";
 
@@ -70,12 +70,72 @@ const sidebarItems = [
   { key: "layers" as SidebarTab, label: "LAYERS", Icon: IconLayers },
 ];
 
+// --- Color utils ---
+function hexToRgb(hex: string) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return [r,g,b];
+}
+function rgbToHsl(r:number,g:number,b:number):[number,number,number] {
+  r/=255; g/=255; b/=255;
+  const max=Math.max(r,g,b), min=Math.min(r,g,b);
+  let h=0,s=0; const l=(max+min)/2;
+  if(max!==min){
+    const d=max-min; s=l>0.5?d/(2-max-min):d/(max+min);
+    switch(max){
+      case r: h=((g-b)/d+(g<b?6:0))/6; break;
+      case g: h=((b-r)/d+2)/6; break;
+      case b: h=((r-g)/d+4)/6; break;
+    }
+  }
+  return [h,s,l];
+}
+
+async function applyShirtColor(src: string, hexColor: string): Promise<string> {
+  const [tr,tg,tb] = hexToRgb(hexColor);
+  return new Promise((resolve) => {
+    const img = new window.Image();
+    img.onload = () => {
+      const c = document.createElement("canvas");
+      c.width = img.naturalWidth; c.height = img.naturalHeight;
+      const ctx = c.getContext("2d")!;
+      ctx.drawImage(img, 0, 0);
+      const d = ctx.getImageData(0,0,c.width,c.height);
+      const px = d.data;
+      for (let i=0;i<px.length;i+=4) {
+        if(px[i+3]<10) continue;
+        const [,s] = rgbToHsl(px[i],px[i+1],px[i+2]);
+        // only recolor low-saturation pixels (white/gray — shirt fabric)
+        // multiply blend: white→target color, shadows stay proportionally dark
+        if(s < 0.35) {
+          px[i]   = Math.round(px[i]   * tr / 255);
+          px[i+1] = Math.round(px[i+1] * tg / 255);
+          px[i+2] = Math.round(px[i+2] * tb / 255);
+        }
+      }
+      ctx.putImageData(d,0,0);
+      resolve(c.toDataURL("image/png"));
+    };
+    img.src = src;
+  });
+}
+
 export default function EditorPage() {
   const [activeTab, setActiveTab] = useState<SidebarTab>(null);
   const [productTab, setProductTab] = useState<ProductTab>("details");
   const [selectedSize, setSelectedSize] = useState<Size>("M");
-  const [selectedColor, setSelectedColor] = useState("#111111");
+  const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [selectedView, setSelectedView] = useState<ViewType>("front");
+  const [processedSrc, setProcessedSrc] = useState<Record<ViewType, string>>({ front:"", back:"", left:"", right:"" });
+
+  useEffect(() => {
+    views.forEach(v => {
+      applyShirtColor(v.src, selectedColor).then(dataUrl => {
+        setProcessedSrc(prev => ({ ...prev, [v.key]: dataUrl }));
+      });
+    });
+  }, [selectedColor]);
   const [zoom, setZoom] = useState(100);
   const [elements, setElements] = useState<CanvasEl[]>([]);
   const [selectedEl, setSelectedEl] = useState<string | null>(null);
@@ -237,16 +297,15 @@ export default function EditorPage() {
     setSelectedEl(null);
   }
 
-  async function renderViewToCanvas(viewKey: ViewType, viewSrc: string): Promise<HTMLCanvasElement> {
+  async function renderViewToCanvas(viewKey: ViewType, viewSrc: string, coloredSrc?: string): Promise<HTMLCanvasElement> {
     const c = document.createElement("canvas");
     c.width = CANVAS;
     c.height = CANVAS;
     const ctx = c.getContext("2d")!;
 
-    // Draw product image with object-contain (maintain aspect ratio, centered)
+    // Draw product image with object-contain (use color-processed src if available)
     await new Promise<void>((res) => {
       const img = new window.Image();
-      img.crossOrigin = "anonymous";
       img.onload = () => {
         const ratio = Math.min(CANVAS / img.naturalWidth, CANVAS / img.naturalHeight);
         const dw = img.naturalWidth * ratio;
@@ -256,7 +315,7 @@ export default function EditorPage() {
         ctx.drawImage(img, dx, dy, dw, dh);
         res();
       };
-      img.src = viewSrc;
+      img.src = coloredSrc ?? viewSrc;
     });
 
     // Draw elements for this view
@@ -292,7 +351,7 @@ export default function EditorPage() {
   async function downloadZip() {
     const zip = new JSZip();
     for (const v of views) {
-      const c = await renderViewToCanvas(v.key, v.src);
+      const c = await renderViewToCanvas(v.key, v.src, processedSrc[v.key]);
       const blob = await new Promise<Blob>(res => c.toBlob(b => res(b!), "image/png"));
       zip.file(`${v.key}.png`, blob);
     }
@@ -321,7 +380,7 @@ export default function EditorPage() {
 
     for (let i = 0; i < views.length; i++) {
       const v = views[i];
-      const vc = await renderViewToCanvas(v.key, v.src);
+      const vc = await renderViewToCanvas(v.key, v.src, processedSrc[v.key]);
       ctx.drawImage(vc, positions[i].x, positions[i].y, GRID, GRID);
       ctx.fillStyle = "#00000066";
       ctx.font = "bold 18px sans-serif";
@@ -571,14 +630,16 @@ export default function EditorPage() {
               style={{ transform: `scale(${zoom / 100})`, transformOrigin: "center" }}
             >
               <div className="relative drop-shadow-xl" style={{ width: CANVAS, height: CANVAS }}>
-                {/* Product image */}
-                <Image
-                  src={views.find(v => v.key === selectedView)?.src ?? "/19.png"}
-                  alt="Product"
-                  fill
-                  className="object-contain"
-                  draggable={false}
-                />
+                {/* Product image (color-processed) */}
+                {processedSrc[selectedView] && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={processedSrc[selectedView]}
+                    alt="Product"
+                    draggable={false}
+                    style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", pointerEvents:"none" }}
+                  />
+                )}
 
                 {/* Printable zone guide */}
                 <div
@@ -677,8 +738,13 @@ export default function EditorPage() {
                     className="w-full rounded-2xl overflow-hidden p-1.5 shadow-sm transition-all"
                     style={{ backgroundColor: active ? selectedColor : "#ffffff" }}
                   >
-                    <div className="w-full aspect-square rounded-xl overflow-hidden relative" style={{ backgroundColor: "#7a6830" }}>
-                      <Image src={src} alt={label} fill className="object-cover" />
+                    <div className="w-full aspect-square rounded-xl overflow-hidden relative bg-gray-100">
+                      {processedSrc[key] ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={processedSrc[key]} alt={label} style={{ width:"100%", height:"100%", objectFit:"contain" }} />
+                      ) : (
+                        <Image src={src} alt={label} fill className="object-contain" />
+                      )}
                     </div>
                   </div>
                   <p className={`text-[10px] font-semibold tracking-wider mt-1.5 mb-3 ${active ? "text-gray-700" : "text-gray-400"}`}>{label}</p>
