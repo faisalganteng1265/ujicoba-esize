@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import LocationSection from "../components/LocationSection";
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
+      <Navbar />
       {/* Hero Section */}
       <section className="w-full">
         <Image

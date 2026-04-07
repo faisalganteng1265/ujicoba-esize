@@ -11,8 +11,6 @@ type Message = {
 export default function Chatbot() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  if (pathname.startsWith("/editor")) return null;
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -26,6 +24,8 @@ export default function Chatbot() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
+
+  if (pathname.startsWith("/editor")) return null;
 
   async function send() {
     const text = input.trim();

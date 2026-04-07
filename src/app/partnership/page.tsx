@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 
 export default function PartnershipPage() {
   return (
     <main className="min-h-screen bg-[#e8e8e6]">
+      <Navbar />
       <section className="px-16 2xl:px-80 py-20">
 
         {/* Header */}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import FadeInUp from "../components/FadeInUp";
 import { pakaian, merch } from "../data/categories";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 
 const labelColors = ["#4a7fc1", "#d4795e", "#4a7fc1", "#d4795e"];
@@ -36,7 +37,7 @@ function CategoryGrid({ items }: { items: { name: string; bg: string }[] }) {
 export default function CategoryPage() {
   return (
     <main className="min-h-screen bg-white">
-
+      <Navbar />
       {/* Hero Header */}
       <div className="relative flex flex-col items-center justify-center text-center pt-20 pb-16 px-8"
         style={{ background: "radial-gradient(ellipse at 50% 40%, #f5d0c0 0%, #fceee8 35%, #ffffff 70%)" }}>

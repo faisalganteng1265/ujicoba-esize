@@ -5,10 +5,12 @@ import SpinIn from "./components/SpinIn";
 import FadeInUp from "./components/FadeInUp";
 import CategoryCarousel from "./components/CategoryCarousel";
 import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <Navbar />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center">
         {/* Background Image */}
