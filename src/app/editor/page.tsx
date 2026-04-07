@@ -446,8 +446,7 @@ export default function EditorPage() {
       {/* Header */}
       <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6 flex-shrink-0 z-50">
         <div>
-          <p className="font-bold text-xl tracking-wider text-gray-800" style={{ fontFamily: "Georgia, serif" }}>esize</p>
-          <p className="text-[8px] text-gray-400 tracking-widest -mt-0.5">Size the sequence, to your perfect size</p>
+          <Image src="/logoesize.png" alt="Esize" width={100} height={36} className="h-9 w-auto" />
         </div>
         <div className="flex gap-3">
           <button onClick={downloadPreview} className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
