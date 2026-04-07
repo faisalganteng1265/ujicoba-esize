@@ -1,6 +1,7 @@
 import Image from "next/image";
 import FadeInUp from "../components/FadeInUp";
 import { pakaian, merch } from "../data/categories";
+import Footer from "../components/Footer";
 
 
 const labelColors = ["#4a7fc1", "#d4795e", "#4a7fc1", "#d4795e"];
@@ -108,6 +109,7 @@ export default function CategoryPage() {
         <CategoryGrid items={merch} />
       </div>
 
+      <Footer />
     </main>
   );
 }

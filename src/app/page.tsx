@@ -4,6 +4,7 @@ import FadeInRight from "./components/FadeInRight";
 import SpinIn from "./components/SpinIn";
 import FadeInUp from "./components/FadeInUp";
 import CategoryCarousel from "./components/CategoryCarousel";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -225,6 +226,7 @@ export default function Home() {
           </button>
         </FadeInUp>
       </section>
+      <Footer />
     </main>
   );
 }
