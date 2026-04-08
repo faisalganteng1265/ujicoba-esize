@@ -6,6 +6,7 @@ import FadeInUp from "./components/FadeInUp";
 import CategoryCarousel from "./components/CategoryCarousel";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import HeroMouseEffect from "./components/HeroMouseEffect";
 
 export default function Home() {
   return (
@@ -13,9 +14,10 @@ export default function Home() {
       <Navbar />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center">
+        <HeroMouseEffect />
         {/* Background Image */}
         <Image
-          src="/landingpage.png"
+          src="/bg hero section.png"
           alt="Merchandise background"
           fill
           className="object-cover object-center"
@@ -24,12 +26,12 @@ export default function Home() {
 
 
         {/* Content */}
-        <div className="relative z-10 w-full flex flex-col items-center text-center px-8">
-          <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-15 max-w-3xl">
+        <div data-hero-content className="relative z-10 w-full flex flex-col items-center text-center px-8">
+          <h1 className="text-5xl md:text-6xl font-bold text-black leading-tight mb-15 max-w-3xl">
             Solusi Terpercaya untuk Merchandise &amp; Promosi
           </h1>
-          <p className="text-2xl text-white/80 mb-10 max-w-3xl">
-            Custom apparel dan promotional products berkualitas tinggi untuk<br />kebutuhan bisnis Anda
+          <p className="text-2xl text-black mb-10 max-w-3xl">
+            Custom apparel dan promotional products berkualitas tinggi untuk kebutuhan bisnis Anda
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button className="px-8 py-3 rounded-[16px] bg-white text-gray-900 hover:bg-gray-100 transition-colors border-1 border-[#927615]">

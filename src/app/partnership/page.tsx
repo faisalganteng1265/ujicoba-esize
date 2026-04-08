@@ -111,21 +111,17 @@ export default function PartnershipPage() {
           <h2 className="text-white font-semibold text-4xl text-center">Our Respectable Client</h2>
         </div>
 
-        {/* Client logo grid — placeholder circles */}
-        <div className="grid grid-cols-8 gap-6 mb-20 mx-10">
-          {Array.from({ length: 24 }).map((_, i) => (
-            <div key={i} className="w-25 h-25 rounded-full bg-[#D9D9D9] mx-auto" />
-          ))}
+        {/* Client image */}
+        <div className="mb-20 mx-10">
+          <Image src="/client.png" alt="Our Respectable Client" width={1200} height={400} className="w-full h-auto" />
         </div>
 
         <div className="bg-[#4273B2] py-4 mb-14 mx-20">
           <h2 className="text-white font-semibold text-4xl text-center">Sponsorship</h2>
         </div>
 
-        <div className="grid grid-cols-8 gap-6 mb-10 mx-10">
-          {Array.from({ length: 24 }).map((_, i) => (
-            <div key={i} className="w-25 h-25 rounded-full bg-[#D9D9D9] mx-auto" />
-          ))}
+        <div className="mb-10 mx-10">
+          <Image src="/Sponsorship.png" alt="Sponsorship" width={1200} height={400} className="w-full h-auto" />
         </div>
 
         <div className="w-full h-px bg-[#E1785B] mb-2" />
