@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-
-
+import FadeInUp from "../components/FadeInUp";
+import SpinIn from "../components/SpinIn";
+import FadeInLeft from "../components/FadeInLeft";
 export default function PartnershipPage() {
   return (
     <main className="min-h-screen bg-[#e8e8e6]">
@@ -22,7 +23,7 @@ export default function PartnershipPage() {
         </div>
 
         {/* Map */}
-        <div className="px-16">
+        <FadeInLeft className="px-16">
           <Image
             src="/peta dunia 1.png"
             alt="Peta Dunia"
@@ -30,13 +31,13 @@ export default function PartnershipPage() {
             height={650}
             className="w-full h-auto"
           />
-        </div>
+        </FadeInLeft>
 
       </section>
 
       {/* Stats Section */}
       <section className="px-16 2xl:px-80 pb-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <FadeInUp className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { number: "2.000+", label: "Universities & Institutions", border: "#4273B2", rounded: "rounded-tl-3xl rounded-br-3xl" },
             { number: "20.000+", label: "Customers",                  border: "#e8734a", rounded: "rounded-tr-3xl rounded-bl-3xl" },
@@ -52,14 +53,14 @@ export default function PartnershipPage() {
               <span className="text-[#7C6000] text-l text-base text-center">{stat.label}</span>
             </div>
           ))}
-        </div>
+        </FadeInUp>
       </section>
 
       {/* How to Partnership Section */}
       <section className="px-16 2xl:px-80 py-16 bg-[#e8e8e6]">
         <h2 className="text-[#7C6000] font-light text-5xl mb-14">How to do Partnership?</h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+        <FadeInUp className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           {[
             { number: 1, text: "Siapkan proposal partnership" },
             { number: 2, text: "Kirim proposal ke WhatsApp Esize" },
@@ -79,7 +80,7 @@ export default function PartnershipPage() {
               </div>
             </div>
           ))}
-        </div>
+        </FadeInUp>
 
         {/* CTA Button */}
         <div className="flex justify-center">
@@ -99,26 +100,26 @@ export default function PartnershipPage() {
       <section className="bg-[#e8e8e6] px-16 2xl:px-80 pt-16 pb-5">
         {/* Icons */}
         <div className="flex justify-center gap-1 mb-6">
-          <Image src="/Rectangle 17.png" alt="" width={100} height={100} className="h-24 w-auto" />
-          <Image src="/Rectangle 19.png" alt="" width={100} height={100} className="h-24 w-auto" />
+          <SpinIn><Image src="/Rectangle 17.png" alt="" width={100} height={100} className="h-24 w-auto" /></SpinIn>
+          <SpinIn><Image src="/Rectangle 19.png" alt="" width={100} height={100} className="h-24 w-auto" /></SpinIn>
         </div>
 
         {/* Divider */}
         <div className="w-full h-px bg-[#E1785B] mb-6" />
 
         {/* Title banner */}
-        <div className="bg-[#E1785B] py-4 mb-14 mx-20">
+        <FadeInUp className="bg-[#E1785B] py-4 mb-14 mx-20">
           <h2 className="text-white font-semibold text-4xl text-center">Our Respectable Client</h2>
-        </div>
+        </FadeInUp>
 
         {/* Client image */}
         <div className="mb-20 mx-10">
           <Image src="/client.png" alt="Our Respectable Client" width={1200} height={400} className="w-full h-auto" />
         </div>
 
-        <div className="bg-[#4273B2] py-4 mb-14 mx-20">
+        <FadeInUp className="bg-[#4273B2] py-4 mb-14 mx-20">
           <h2 className="text-white font-semibold text-4xl text-center">Sponsorship</h2>
-        </div>
+        </FadeInUp>
 
         <div className="mb-10 mx-10">
           <Image src="/Sponsorship.png" alt="Sponsorship" width={1200} height={400} className="w-full h-auto" />
