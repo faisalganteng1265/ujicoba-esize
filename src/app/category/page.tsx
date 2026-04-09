@@ -7,7 +7,7 @@ import { pakaian, merch } from "../data/categories";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import JacketModal from "../components/JacketModal";
-
+import SpinIn from "../components/SpinIn";
 const labelColors = ["#4a7fc1", "#d4795e", "#4a7fc1", "#d4795e"];
 
 function CategoryGrid({ items, onJacketClick }: { items: { name: string; bg: string }[]; onJacketClick: () => void }) {
@@ -106,8 +106,8 @@ export default function CategoryPage() {
           <FadeInUp>
             <div className="flex flex-col items-center mb-12">
               <div className="flex items-center gap-1 mb-4">
-                <Image src="/Rectangle 17.png" alt="logo" width={100} height={100} />
-                <Image src="/Rectangle 19.png" alt="logo" width={100} height={100} />
+                <SpinIn><Image src="/Rectangle 17.png" alt="logo" width={100} height={100} /></SpinIn>
+                <SpinIn><Image src="/Rectangle 19.png" alt="logo" width={100} height={100} /></SpinIn>
               </div>
               <div className="relative px-16 py-5">
                 <span className="absolute top-0 right-0 w-20 h-12 border-t-6 border-r-6 border-[#fae8e4]" />
@@ -126,8 +126,8 @@ export default function CategoryPage() {
           <FadeInUp>
             <div className="flex flex-col items-center mb-12">
               <div className="flex items-center gap-1 mb-4">
-                <Image src="/Rectangle 17.png" alt="logo" width={100} height={100} />
-                <Image src="/Rectangle 19.png" alt="logo" width={100} height={100} />
+                <SpinIn><Image src="/Rectangle 17.png" alt="logo" width={100} height={100} /></SpinIn>
+                <SpinIn><Image src="/Rectangle 19.png" alt="logo" width={100} height={100} /></SpinIn>
               </div>
               <div className="relative px-16 py-5">
                 <span className="absolute top-0 right-0 w-20 h-12 border-t-6 border-r-6 border-[#fae8e4]" />
