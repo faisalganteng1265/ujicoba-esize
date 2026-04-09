@@ -458,11 +458,7 @@ export default function EditorPage() {
           </button>
           <button onClick={downloadZip} className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" /><polyline points="17 21 17 13 7 13 7 21" /><polyline points="7 3 7 8 15 8" /></svg>
-            Simpan Templat
-          </button>
-          <button className="flex items-center gap-2 bg-[#4a7fc1] hover:bg-[#3a6fb1] text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" /><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" /></svg>
-            Tambah Keranjang
+            Simpan Template
           </button>
         </div>
       </header>
@@ -690,19 +686,6 @@ export default function EditorPage() {
                           className={`flex-1 h-9 rounded-xl italic text-base transition-all border ${tdItalic ? "bg-gray-800 text-white border-gray-800" : "bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100"}`}><em>I</em></button>
                       </div>
                     </div>
-                    <div className="flex-1 bg-white rounded-2xl p-3 shadow-sm border border-gray-100">
-                      <span className="text-[10px] font-bold text-gray-500 tracking-widest block mb-2">ALIGN</span>
-                      <div className="flex gap-1.5">
-                        {(["left","center","right"] as const).map(a => (
-                          <button key={a} onClick={() => setTdAlign(a)}
-                            className={`flex-1 h-9 rounded-xl flex items-center justify-center transition-all border ${tdAlign === a ? "bg-[#8b6340] text-white border-[#8b6340]" : "bg-gray-50 text-gray-500 border-gray-200 hover:bg-gray-100"}`}>
-                            {a === "left" && <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>}
-                            {a === "center" && <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>}
-                            {a === "right" && <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="9" y1="12" x2="21" y2="12"/><line x1="6" y1="18" x2="21" y2="18"/></svg>}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
                   </div>
                 </div>
 
@@ -808,7 +791,7 @@ export default function EditorPage() {
             className="flex-1 overflow-hidden relative flex items-center justify-center bg-[#e8e4dc]"
             onClick={() => setSelectedEl(null)}
           >
-            <div className="absolute top-0 left-0 right-0 h-1 bg-[#4a7fc1]" />
+            <div className="absolute top-0 left-0 right-0  bg-[#4a7fc1]" />
             <div
               className="flex items-center justify-center"
               style={{ transform: `scale(${zoom / 100})`, transformOrigin: "center" }}
@@ -888,21 +871,6 @@ export default function EditorPage() {
                   );
                 })}
               </div>
-            </div>
-          </div>
-
-          {/* Bottom hint */}
-          <div className="flex items-center justify-center py-4 flex-shrink-0">
-            <div className="flex items-center gap-3 bg-[#fdf6f0] border border-[#f0ddd0] rounded-full px-5 py-2.5 shadow-sm">
-              <div className="flex gap-1">
-                <button className="w-7 h-7 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
-                </button>
-                <button className="w-7 h-7 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
-                </button>
-              </div>
-              <span className="text-sm text-gray-500">Upload gambar lalu geser ke posisi yang diinginkan</span>
             </div>
           </div>
         </div>
