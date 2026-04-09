@@ -22,9 +22,9 @@ export default function Navbar() {
         <Link href="/partnership" className="text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors">
           Partnership
         </Link>
-        <Link href="/booklet" className="text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors">
+        <a href="https://drive.google.com/file/d/1p5fWSs8g53_neR7JYbf8lEuKdUs-4mdg/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors">
           Booklet
-        </Link>
+        </a>
       </div>
 
       {/* CTA Button */}
