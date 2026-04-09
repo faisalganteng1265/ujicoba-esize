@@ -32,6 +32,7 @@ interface Props {
 }
 
 export default function JacketModal({ onClose }: Props) {
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const [selectedTipe, setSelectedTipe] = useState("Bomber");
   const [selectedBahan, setSelectedBahan] = useState("Taslan/Soft Parasut");
   const [selectedWarna, setSelectedWarna] = useState("Hitam");
@@ -40,6 +41,14 @@ export default function JacketModal({ onClose }: Props) {
   const images = ["/H2.png", "/H2.png", "/H2.png", "/H2.png", "/H2.png"];
 
   return (
+    <>
+    {sizeGuideOpen && (
+      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60" onClick={() => setSizeGuideOpen(false)}>
+        <div className="relative max-w-lg w-full mx-4" onClick={(e) => e.stopPropagation()}>
+          <Image src="/jacketbooklet.png" alt="Size Guide" width={800} height={600} className="w-full h-auto rounded-xl shadow-2xl" />
+        </div>
+      </div>
+    )}
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
       onClick={onClose}
@@ -126,9 +135,9 @@ export default function JacketModal({ onClose }: Props) {
               <p className="font-bold text-gray-800 flex items-center gap-1">
                 <span>📦</span> Pilih Bahan
               </p>
-              <a href="#" className="text-[#4273B2] text-sm flex items-center gap-1 hover:underline">
+              <button onClick={() => setSizeGuideOpen(true)} className="text-[#4273B2] text-sm flex items-center gap-1 hover:underline">
                 Size Guide →
-              </a>
+              </button>
             </div>
             <div className="flex flex-col gap-2">
               {BAHAN.map((b) => (
@@ -232,5 +241,6 @@ export default function JacketModal({ onClose }: Props) {
         </div>
       </div>
     </div>
+    </>
   );
 }
