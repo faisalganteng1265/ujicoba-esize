@@ -132,7 +132,7 @@ async function applyShirtColor(src: string, hexColor: string): Promise<string> {
 export default function EditorPage() {
   const [activeTab, setActiveTab] = useState<SidebarTab>(null);
   const [productTab, setProductTab] = useState<ProductTab>("details");
-  const [selectedSize, setSelectedSize] = useState<Size>("M");
+
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [selectedView, setSelectedView] = useState<ViewType>("front");
   const [processedSrc, setProcessedSrc] = useState<Record<ViewType, string>>({ front:"", back:"", left:"", right:"" });
@@ -238,7 +238,8 @@ export default function EditorPage() {
       view: selectedView,
     };
     setElements(prev => [...prev, newEl]);
-    setSelectedEl(newEl.id);
+    setSelectedEl(null);
+    setTdText("");
   }
 
   function onPointerDown(e: React.PointerEvent, id: string) {
@@ -446,7 +447,9 @@ export default function EditorPage() {
       {/* Header */}
       <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6 flex-shrink-0 z-50">
         <div>
-          <Image src="/logoesize.png" alt="Esize" width={100} height={36} className="h-9 w-auto" />
+          <a href="/">
+            <Image src="/logoesize.png" alt="Esize" width={100} height={36} className="h-9 w-auto cursor-pointer" />
+          </a>
         </div>
         <div className="flex gap-3">
           <button onClick={downloadPreview} className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors">
@@ -524,15 +527,7 @@ export default function EditorPage() {
                     </div>
                     <button className="text-xs text-[#e8734a] font-medium hover:underline">Size Guide →</button>
                   </div>
-                  <div className="grid grid-cols-4 gap-2 max-w-[250px]">
-                    {sizes.map((size) => (
-                      <button key={size} onClick={() => setSelectedSize(size)}
-                        className={`relative py-2 aspect-square rounded-xl text-sm font-semibold transition-all ${selectedSize === size ? "bg-[#e8734a] text-white shadow-md" : "bg-[#fdf6f0] text-gray-600 hover:bg-[#f5e6d8]"}`}>
-                        {selectedSize === size && <span className="absolute -top-1 -right-1 w-3 h-3 bg-orange-200 rounded-full border-2 border-white" />}
-                        {size}
-                      </button>
-                    ))}
-                  </div>
+                  <p className="text-sm text-gray-700 font-medium">{sizes.join("-")}</p>
                 </div>
 
                 <div>

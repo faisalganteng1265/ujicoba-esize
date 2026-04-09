@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="w-full bg-[#F8F3E9] px-16 2xl:px-80 py-3 flex items-center justify-between">
+    <nav className="w-full bg-[#F8F3E9] px-8 2xl:px-80 py-3 flex items-center justify-between whitespace-nowrap">
       {/* Logo */}
       <Link href="/">
         <div className="bg-white border border-gray-200 rounded-lg px-3 py-1.5 mx-30">
@@ -12,7 +12,7 @@ export default function Navbar() {
       </Link>
 
       {/* Nav Links */}
-      <div className="flex items-center gap-12">
+      <div className="flex items-center gap-6 2xl:gap-12">
         <Link href="/category" className="text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors">
           Katalog Produk
         </Link>

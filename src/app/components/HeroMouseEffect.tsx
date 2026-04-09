@@ -2,16 +2,17 @@
 
 import { useRef, useEffect } from "react";
 
-function spawnImage(x: number, y: number, fixed: boolean = false) {
+function spawnImage(x: number, y: number) {
+  const size = window.innerWidth >= 1536 ? 260 : 160;
   const src = `/H${Math.floor(Math.random() * 9) + 1}.png`;
   const img = document.createElement("img");
   img.src = src;
   img.style.cssText = `
-    position: ${fixed ? "fixed" : "fixed"};
+    position: fixed;
     left: ${x}px;
     top: ${y}px;
-    width: 260px;
-    height: 260px;
+    width: ${size}px;
+    height: ${size}px;
     object-fit: contain;
     transform: translate(-50%, -50%) scale(0);
     pointer-events: none;
