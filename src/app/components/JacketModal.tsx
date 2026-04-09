@@ -220,11 +220,11 @@ export default function JacketModal({ onClose }: Props) {
           <a
             href={`https://wa.me/6281385774811?text=${encodeURIComponent(
               `Halo Esize! Saya ingin memesan:\n\n` +
-              `📦 *Produk:* ${selectedTipe} Jacket Premium\n` +
-              `🧥 *Tipe:* ${selectedTipe}\n` +
-              `🪡 *Bahan:* ${selectedBahan}\n` +
-              `🎨 *Warna:* ${selectedWarna}\n` +
-              `🔢 *Jumlah:* ${qty} pcs\n\n` +
+              `*Produk:* ${selectedTipe} Jacket Premium\n` +
+              `*Tipe:* ${selectedTipe}\n` +
+              `*Bahan:* ${selectedBahan}\n` +
+              `*Warna:* ${selectedWarna}\n` +
+              `*Jumlah:* ${qty} pcs\n\n` +
               `Mohon info lebih lanjut mengenai harga dan proses pemesanan. Terima kasih!`
             )}`}
             target="_blank"
