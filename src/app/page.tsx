@@ -11,7 +11,7 @@ import HeroMouseEffect from "./components/HeroMouseEffect";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Navbar />
+      <Navbar variant="transparent" />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center">
         <HeroMouseEffect />

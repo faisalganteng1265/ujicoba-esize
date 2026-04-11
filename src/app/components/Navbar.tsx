@@ -1,9 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Navbar({ variant = "default" }: { variant?: "default" | "transparent" | "light" }) {
+  const isOverlay = variant === "transparent" || variant === "light";
+
+  const linkClass = variant === "light"
+    ? "text-white text-sm font-medium hover:text-gray-200 transition-colors"
+    : "text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors";
+
+  const navClass = isOverlay
+    ? "w-full absolute top-0 left-0 z-20 bg-transparent px-8 2xl:px-80 py-3 flex items-center justify-between whitespace-nowrap"
+    : "w-full bg-[#F8F3E9] px-8 2xl:px-80 py-3 flex items-center justify-between whitespace-nowrap";
+
   return (
-    <nav className="w-full absolute top-0 left-0 z-20 bg-transparent px-8 2xl:px-80 py-3 flex items-center justify-between whitespace-nowrap">
+    <nav className={navClass}>
       {/* Logo */}
       <Link href="/">
         <div className="bg-white border border-gray-200 rounded-lg px-3 py-1.5 mx-30">
@@ -13,16 +23,16 @@ export default function Navbar() {
 
       {/* Nav Links */}
       <div className="flex items-center gap-6 2xl:gap-12">
-        <Link href="/category" className="text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors">
+        <Link href="/category" className={linkClass}>
           Katalog Produk
         </Link>
-        <Link href="/about" className="text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors">
+        <Link href="/about" className={linkClass}>
           Tentang Kami
         </Link>
-        <Link href="/partnership" className="text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors">
+        <Link href="/partnership" className={linkClass}>
           Partnership
         </Link>
-        <a href="https://drive.google.com/file/d/1p5fWSs8g53_neR7JYbf8lEuKdUs-4mdg/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-gray-700 text-sm font-medium hover:text-gray-900 transition-colors">
+        <a href="https://drive.google.com/file/d/1p5fWSs8g53_neR7JYbf8lEuKdUs-4mdg/view?usp=sharing" target="_blank" rel="noopener noreferrer" className={linkClass}>
           Booklet
         </a>
       </div>

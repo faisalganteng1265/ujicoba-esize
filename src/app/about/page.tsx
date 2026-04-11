@@ -10,7 +10,7 @@ import FadeInLeft from "../components/FadeInLeft";
 export default function AboutPage() {
   return (
     <main className="min-h-screen">
-      <Navbar />
+      <Navbar variant="light" />
       {/* Hero Section */}
       <section className="w-full">
         <Image

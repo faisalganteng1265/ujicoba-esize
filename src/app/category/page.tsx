@@ -52,7 +52,7 @@ export default function CategoryPage() {
   return (
     <main className="min-h-screen bg-white">
       {jacketOpen && <JacketModal onClose={() => setJacketOpen(false)} />}
-      <Navbar />
+      <Navbar variant="transparent" />
       {/* Hero Header */}
       <div className="relative flex flex-col items-center justify-center text-center pt-20 pb-16 px-8"
         style={{ background: "radial-gradient(ellipse at 50% 40%, #f5d0c0 0%, #fceee8 35%, #ffffff 70%)" }}>

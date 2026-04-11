@@ -7,7 +7,7 @@ import FadeInLeft from "../components/FadeInLeft";
 export default function PartnershipPage() {
   return (
     <main className="min-h-screen bg-[#e8e8e6]">
-      <Navbar />
+      <Navbar variant="transparent" />
       <section className="px-16 2xl:px-80 py-20">
 
         {/* Header */}
