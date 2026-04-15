@@ -113,17 +113,17 @@ export default function PartnershipPage() {
         </FadeInUp>
 
         {/* Client image */}
-        <div className="mb-20 mx-10">
+        <FadeInUp className="mb-20 mx-10">
           <Image src="/client.png" alt="Our Respectable Client" width={1200} height={400} className="w-full h-auto" />
-        </div>
+        </FadeInUp>
 
         <FadeInUp className="bg-[#4273B2] py-4 mb-14 mx-20">
           <h2 className="text-white font-semibold text-4xl text-center">Sponsorship</h2>
         </FadeInUp>
 
-        <div className="mb-10 mx-10">
+        <FadeInUp className="mb-10 mx-10">
           <Image src="/Sponsorship.png" alt="Sponsorship" width={1200} height={400} className="w-full h-auto" />
-        </div>
+        </FadeInUp>
 
         <div className="w-full h-px bg-[#E1785B] mb-2" />
       </section>
